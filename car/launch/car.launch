@@ -1,0 +1,36 @@
+<!-- -*- mode: XML -*- -->
+<launch>
+
+    ################ car node ################
+    <node pkg="car" name="car" type="car" output="screen">
+        <param name="odom_frame" value="odom"/>
+        <param name="base_frame" value="base_link"/>
+        <!-- Initial pose of car -->
+        <param name="x" value="0"/>
+        <param name="y" value="0"/>
+        <param name="z" value="0"/>
+        <!-- Initial velocity of car -->
+        <param name="vx" value="0.5"/>
+        <param name="vy" value="0"/>
+        <param name="vth" value="0.5"/>
+        <param name="duration" value="0.01"/>
+    </node>
+
+    ################ keyboardcontrol node ################
+    <!--<node pkg="car" name="keyboardcontrol" type="keyboardcontrol" output="screen">
+        <param name="l_scale" value="0.5"/>
+        <param name="a_scale" value="0.5"/>
+        <param name="rate" value="10"/>
+    </node>-->
+
+    ################ drawpath node ################
+    <node pkg="drawpath" type="drawpath" name="drawpath" output="screen">
+        <param name="fixed_frame" value="odom"/>
+        <param name="odom_frame" value="odom"/>
+        <param name="use_odom" value="true"/>
+    </node>
+
+    ################ rviz node ################
+    <node pkg="rviz" type="rviz" name="rviz" args="-d $(find car)/rviz/car.rviz"/>
+
+</launch>
